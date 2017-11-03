@@ -1,1 +1,6 @@
-com/ef/models/ApplicationArgumentsTest.class
+com/ef/models/AccessLogParserTests.class
+com/ef/models/data/BlockedIpRepositoryTests.class
+com/ef/models/data/HttpLogRepositoryTests.class
+com/ef/models/ApplicationArgumentsTests.class
+com/ef/models/data/MySqlDatabaseTests.class
+com/ef/models/data/AccessLogDatabaseLoaderTests.class

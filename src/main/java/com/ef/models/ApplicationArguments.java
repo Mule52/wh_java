@@ -22,6 +22,12 @@ public class ApplicationArguments {
 
     public ApplicationArguments(String[] args) {
 
+        // TODO: used only for local debugging
+//        args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=100"};
+//        args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=daily", "--threshold=250"};
+//        args = new String[]{"--startDate=2017-01-01.15:00:00", "--duration=hourly", "--threshold=200"};
+//        args = new String[]{"--startDate=2017-01-01.00:00:00", "--duration=daily", "--threshold=500"};
+
         if (args.length < 3 || args.length > 4){
             throw new IllegalArgumentException("Valid program arguments are --accessLog=/path/to/file.log " +
                     "--startDate=" + dateFormatPattern + " --duration=hourly|monthly --threshold=integer");
@@ -47,14 +53,7 @@ public class ApplicationArguments {
                 .ofType(Integer.class)
                 .required();
 
-        OptionSet options = null;
-        // TODO: used only for local debugging
-//        args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=100"};
-//        args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=daily", "--threshold=250"};
-//        args = new String[]{"--startDate=2017-01-01.15:00:00", "--duration=hourly", "--threshold=200"};
-//        args = new String[]{"--startDate=2017-01-01.00:00:00", "--duration=daily", "--threshold=500"};
-
-        options = parser.parse(args);
+        OptionSet options = parser.parse(args);
 
         startDate = ((Date)options.valueOf("startDate")).toInstant();
         duration = Duration.valueOf(options.valueOf("duration").toString().toUpperCase());

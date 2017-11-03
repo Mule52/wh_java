@@ -1,10 +1,16 @@
+com/ef/models/data/ConnectionFactory.class
+com/ef/models/data/MySqlConnectionFactory.class
+com/ef/models/data/dtos/HttpLogDto.class
+com/ef/InjectorModule.class
+com/ef/models/data/dtos/BlockedIpDto.class
+com/ef/models/data/BlockedIpRepositoryImpl.class
+com/ef/logging/ConsoleLogger.class
+com/ef/models/data/tables/Table.class
 com/ef/models/data/MySqlDatabase.class
 com/ef/models/data/HttpLogRepository.class
 com/ef/logging/Loggable.class
 com/ef/models/data/AccessLogDatabaseLoader.class
 com/ef/models/AccessLogParser.class
-com/ef/models/data/dtos/HttpLogDto.class
-com/ef/InjectorModule.class
 com/ef/models/Duration.class
 com/ef/models/data/HttpLogRepositoryImpl.class
 com/ef/models/data/BlockedIpRepository.class
@@ -12,8 +18,4 @@ com/ef/models/data/Database.class
 com/ef/models/data/tables/HttpLogs.class
 com/ef/models/data/tables/BlockedIps.class
 com/ef/Parser.class
-com/ef/models/data/dtos/BlockedIpDto.class
-com/ef/models/data/BlockedIpRepositoryImpl.class
 com/ef/models/ApplicationArguments.class
-com/ef/logging/ConsoleLogger.class
-com/ef/models/data/tables/Table.class

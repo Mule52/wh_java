@@ -1,7 +1,7 @@
 package com.ef.models.data;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.sql.SQLException;
 
@@ -24,7 +24,7 @@ public class AccessLogDatabaseLoaderTests {
             Database.Tables.HttpLogs.HTTP_STATUS_CODE,
             Database.Tables.HttpLogs.USER_AGENT);
 
-    @BeforeEach
+    @Before
     public void beforeEach() {
         database = mock(Database.class);
         cut = new AccessLogDatabaseLoader(database);

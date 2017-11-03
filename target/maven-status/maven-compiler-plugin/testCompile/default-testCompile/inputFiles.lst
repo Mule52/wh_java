@@ -1,1 +1,6 @@
-/home/alex/git/wh_java/src/test/java/com/ef/models/ApplicationArgumentsTest.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/data/MySqlDatabaseTests.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/data/HttpLogRepositoryTests.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/AccessLogParserTests.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/ApplicationArgumentsTests.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/data/BlockedIpRepositoryTests.java
+/home/alex/git/wh_java/src/test/java/com/ef/models/data/AccessLogDatabaseLoaderTests.java

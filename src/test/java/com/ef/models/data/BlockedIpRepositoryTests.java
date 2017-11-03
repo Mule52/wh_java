@@ -1,8 +1,8 @@
 package com.ef.models.data;
 
 import com.ef.models.data.dtos.BlockedIpDto;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.sql.SQLException;
 
@@ -15,7 +15,7 @@ public class BlockedIpRepositoryTests {
     String insertStatement;
     BlockedIpDto blockedIpDto;
 
-    @BeforeEach
+    @Before
     public void beforeEach() {
         database = mock(Database.class);
         cut = new BlockedIpRepositoryImpl(database);

@@ -1,6 +1,7 @@
 package com.ef.models;
 
-import org.junit.jupiter.api.*;
+
+import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -8,8 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
-import static org.junit.gen5.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ApplicationArgumentsTests {
 
@@ -45,39 +45,33 @@ public class ApplicationArgumentsTests {
         }
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void invalidStartDatePatternShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01 13:00:00", "--duration=hourly", "--threshold=100"};
-        assertThrows(Exception.class, () -> new ApplicationArguments(args));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void invalidDurationValueShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=monthly", "--threshold=100"};
-        assertThrows(Exception.class, () -> new ApplicationArguments(args));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void invalidThresholdValueShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
-        assertThrows(Exception.class, () -> new ApplicationArguments(args));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void invalidAccessLogArgumentShouldThrowException() {
         args = new String[]{"--accessLogd=/path/to/file.log", "--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
-        assertThrows(Exception.class, () -> new ApplicationArguments(args));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void unexpectedArgumentShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
-        assertThrows(Exception.class, () -> new ApplicationArguments(args));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void unexpectedArgumentShouldThrowIllegalArgumentException() {
         args = new String[]{"--accessLog=/path/to/file.log", "--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test", "--unexpected=arg"};
-        assertThrows(IllegalArgumentException.class, () -> new ApplicationArguments(args));
     }
 }

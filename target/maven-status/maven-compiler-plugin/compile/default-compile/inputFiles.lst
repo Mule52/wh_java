@@ -2,9 +2,11 @@
 /home/alex/git/wh_java/src/main/java/com/ef/models/data/dtos/HttpLogDto.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/Duration.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/AccessLogParser.java
+/home/alex/git/wh_java/src/main/java/com/ef/models/data/ConnectionFactory.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/ApplicationArguments.java
 /home/alex/git/wh_java/src/main/java/com/ef/logging/Loggable.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/data/tables/Table.java
+/home/alex/git/wh_java/src/main/java/com/ef/models/data/MySqlConnectionFactory.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/data/BlockedIpRepository.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/data/MySqlDatabase.java
 /home/alex/git/wh_java/src/main/java/com/ef/models/data/tables/HttpLogs.java

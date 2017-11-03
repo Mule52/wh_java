@@ -1,5 +1,7 @@
 package com.ef.models.data;
 
+import com.google.inject.Inject;
+
 import java.sql.*;
 
 public class MySqlDatabase extends Database {
@@ -12,28 +14,25 @@ public class MySqlDatabase extends Database {
     private Statement statement;
     public static MySqlDatabase mySqlDatabase;
 
-
-    public MySqlDatabase() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager.getConnection(mysqlUrl, mysqlUser, mysqlPassword);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Inject
+    public MySqlDatabase(ConnectionFactory connectionFactory) {
+        connection = connectionFactory.createConnection(mysqlUrl, mysqlUser, mysqlPassword);
     }
 
+
+    @Override
     public void executeUpdate(String sql){
         execute(sql, true);
     }
 
+    @Override
     public void execute(String sql){
         execute(sql, false);
     }
 
     private void execute(String sql, boolean isUpdate){
         try {
-            statement = connection.prepareStatement(sql);
+            statement = connection.createStatement();
             if (isUpdate){
                 statement.executeUpdate(sql);
             } else {

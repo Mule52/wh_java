@@ -4,7 +4,7 @@ import com.ef.logging.Loggable;
 import com.ef.models.data.BlockedIpRepository;
 import com.ef.models.data.HttpLogRepository;
 import com.ef.models.data.dtos.BlockedIpDto;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.time.Instant;
