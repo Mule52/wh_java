@@ -14,6 +14,16 @@ public class AccessLogDatabaseLoaderTests {
     String truncateSql = String.format("TRUNCATE %s", Database.Tables.HttpLogs.TABLE_NAME);
     String filePath = "/access.log";
 
+    String loadQuery = String.format("LOAD DATA LOCAL INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY '|'" +
+                    " LINES TERMINATED BY '\n' (%s, %s, %s, %s, %s)",
+            filePath,
+            Database.Tables.HttpLogs.TABLE_NAME,
+            Database.Tables.HttpLogs.CREATED_ON,
+            Database.Tables.HttpLogs.IP,
+            Database.Tables.HttpLogs.HTTP_METHOD,
+            Database.Tables.HttpLogs.HTTP_STATUS_CODE,
+            Database.Tables.HttpLogs.USER_AGENT);
+
     @BeforeEach
     public void beforeEach() {
         database = mock(Database.class);
@@ -23,16 +33,6 @@ public class AccessLogDatabaseLoaderTests {
     @Test
     public void executeShouldCallDatabaseExecuteWithValidFilePath() throws SQLException {
 
-        String loadQuery = String.format("LOAD DATA LOCAL INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY '|'" +
-                        " LINES TERMINATED BY '\n' (%s, %s, %s, %s, %s)",
-                filePath,
-                Database.Tables.HttpLogs.TABLE_NAME,
-                Database.Tables.HttpLogs.CREATED_ON,
-                Database.Tables.HttpLogs.IP,
-                Database.Tables.HttpLogs.HTTP_METHOD,
-                Database.Tables.HttpLogs.HTTP_STATUS_CODE,
-                Database.Tables.HttpLogs.USER_AGENT);
-
         doAnswer(invocation -> null).when(database).executeUpdate(truncateSql);
         doAnswer(invocation -> null).when(database).execute(loadQuery);
 
@@ -41,16 +41,6 @@ public class AccessLogDatabaseLoaderTests {
 
     @Test
     public void executeShouldNotCallDatabaseFunctionsWhenFilePathIsNull() throws SQLException {
-
-        String loadQuery = String.format("LOAD DATA LOCAL INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY '|'" +
-                        " LINES TERMINATED BY '\n' (%s, %s, %s, %s, %s)",
-                filePath,
-                Database.Tables.HttpLogs.TABLE_NAME,
-                Database.Tables.HttpLogs.CREATED_ON,
-                Database.Tables.HttpLogs.IP,
-                Database.Tables.HttpLogs.HTTP_METHOD,
-                Database.Tables.HttpLogs.HTTP_STATUS_CODE,
-                Database.Tables.HttpLogs.USER_AGENT);
 
         verify(database, never()).executeUpdate(truncateSql);
         verify(database, never()).execute(loadQuery);
