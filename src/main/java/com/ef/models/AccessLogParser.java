@@ -26,7 +26,7 @@ public class AccessLogParser {
         List<BlockedIpDto> blockedIpDtos = httpLogRepository.find(startDate, duration, threshold);
 
         for (BlockedIpDto blockedIpDto : blockedIpDtos){
-            logger.print(String.format("%s %s", blockedIpDto.getIp(), blockedIpDto.getMessage()));
+            logger.print(blockedIpDto.getIp());
             blockedIpRepository.save(blockedIpDto);
         }
     }
