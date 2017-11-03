@@ -5,7 +5,7 @@ import com.ef.models.data.dtos.BlockedIpDto;
 import com.ef.models.data.BlockedIpRepository;
 import com.ef.models.data.HttpLogRepository;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 public class AccessLogParser {
@@ -22,11 +22,11 @@ public class AccessLogParser {
         this.blockedIpRepository = blockedIpRepository;
     }
 
-    public void processLogs(Timestamp startDate, Duration duration, int threshold) {
+    public void processLogs(Instant startDate, Duration duration, int threshold) {
         List<BlockedIpDto> blockedIpDtos = httpLogRepository.find(startDate, duration, threshold);
 
         for (BlockedIpDto blockedIpDto : blockedIpDtos){
-            logger.print(blockedIpDto.getMessage());
+            logger.print(String.format("%s %s", blockedIpDto.getIp(), blockedIpDto.getMessage()));
             blockedIpRepository.save(blockedIpDto);
         }
     }

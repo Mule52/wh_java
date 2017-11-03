@@ -1,3 +1,5 @@
+-- This file is used to create the database for this application.
+
 DROP DATABASE IF EXISTS `wallet_hub`;
 CREATE DATABASE `wallet_hub`;
 USE `wallet_hub`;

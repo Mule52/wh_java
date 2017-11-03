@@ -1,11 +1,12 @@
 package com.ef.models.data.dtos;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
+import java.time.Instant;
 
 public final class HttpLogDto {
 
     private int id;
-    private Timestamp createdOn;
+    private Instant createdOn;
     private String ip;
     private String httpMethod;
     private String httpStatusCode;
@@ -50,11 +51,11 @@ public final class HttpLogDto {
         this.id = id;
     }
 
-    public Timestamp getCreatedOn() {
+    public Instant getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Timestamp createdOn) {
+    public void setCreatedOn(Instant createdOn) {
         this.createdOn = createdOn;
     }
 

@@ -13,13 +13,14 @@ public class BlockedIpRepositoryImpl implements BlockedIpRepository {
     }
 
     public void save(BlockedIpDto blockedIpDto){
+        if (blockedIpDto != null){
+            String insertStatement = String.format("INSERT INTO %s.%s (%s, %s) VALUES (?, ?);",
+                    Database.NAME,
+                    Database.Tables.BlockedIps.TABLE_NAME,
+                    Database.Tables.BlockedIps.IP,
+                    Database.Tables.BlockedIps.MESSAGE);
 
-        String insertStatement = String.format("INSERT INTO %s.%s (%s, %s) VALUES (?, ?);",
-                Database.NAME,
-                Database.Tables.BlockedIps.TABLE_NAME,
-                Database.Tables.BlockedIps.IP,
-                Database.Tables.BlockedIps.MESSAGE);
-
-        database.executeUpdate(insertStatement, blockedIpDto.getIp(), blockedIpDto.getMessage());
+            database.executeUpdate(insertStatement, blockedIpDto.getIp(), blockedIpDto.getMessage());
+        }
     }
 }

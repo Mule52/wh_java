@@ -5,20 +5,17 @@ public class BlockedIpDto {
     private String ip;
     private String message;
 
+    public BlockedIpDto(String ip, String message){
+        this.ip = ip;
+        this.message = message;
+    }
+
     public String getIp() {
         return ip;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     @Override

@@ -5,6 +5,8 @@ import com.ef.models.data.dtos.BlockedIpDto;
 import com.google.inject.Inject;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +20,10 @@ public class HttpLogRepositoryImpl implements HttpLogRepository {
     }
 
     @Override
-    public List<BlockedIpDto> find(Timestamp startDate, Duration duration, int threshold){
+    public List<BlockedIpDto> find(Instant startDate, Duration duration, int threshold){
         List<BlockedIpDto> blockedIpDtos = new ArrayList();
 
-        Timestamp endDate = getEndDateFromStartDate(startDate, duration);
+        Instant endDate = getEndDateFromStartDate(startDate, duration);
 
         String selectStatement =
                 String.format("select %s, count(*) as totalRequests from %s " +
@@ -38,10 +40,9 @@ public class HttpLogRepositoryImpl implements HttpLogRepository {
 
         try {
             while(results.next()){
-                BlockedIpDto blockedIpDto = new BlockedIpDto();
-                blockedIpDto.setIp(results.getString("ip"));
-                blockedIpDto.setMessage(getMessageFor(duration, threshold, results.getInt("totalRequests")));
-                blockedIpDtos.add(blockedIpDto);
+                String ip = results.getString("ip");
+                String msg = getMessageFor(duration, threshold, results.getInt("totalRequests"));
+                blockedIpDtos.add(new BlockedIpDto(ip, msg));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
@@ -58,14 +59,13 @@ public class HttpLogRepositoryImpl implements HttpLogRepository {
                 totalRequests == 1 ? "request" : "requests");
     }
 
-    private Timestamp getEndDateFromStartDate(Timestamp startDate, Duration duration) {
-        Timestamp endDate = Timestamp.valueOf(startDate.toLocalDateTime());
-        long a = startDate.getTime() + getCalulatedDuration(duration);
-        endDate.setTime(a);
+    private Instant getEndDateFromStartDate(Instant startDate, Duration duration) {
+        Instant endDate;
+        if (duration == Duration.HOURLY){
+            endDate = startDate.plus(1, ChronoUnit.HOURS);
+        } else {
+            endDate = startDate.plus(1, ChronoUnit.DAYS);
+        }
         return endDate;
-    }
-
-    private long getCalulatedDuration(Duration duration) {
-        return duration == Duration.HOURLY ? (long) (60 * 60 * 1000) : (long) (60 * 60 * 1000) * 24;
     }
 }

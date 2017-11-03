@@ -58,7 +58,8 @@ The log file assumes 200 as hourly limit and 500 as daily limit, meaning:
 (1) 
 When you run your parser against this file with the following parameters
 
-java -cp "parser.jar" com.ef.Parser --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
+java -cp "parser.jar" com.ef.Parser
+
 
 The output will have 192.168.11.231. If you open the log file, 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
 
