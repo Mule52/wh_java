@@ -4,10 +4,32 @@ import com.ef.logging.Loggable;
 import com.ef.models.data.*;
 import com.ef.logging.ConsoleLogger;
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class InjectorModule extends AbstractModule {
     @Override
     protected void configure() {
+
+        Properties defaults = new Properties();
+        defaults.setProperty("db_server_url", "jdbc:mysql://localhost:3306/name?useSSL=false");
+        defaults.setProperty("db_name", "name");
+        defaults.setProperty("db_username", "user");
+        defaults.setProperty("db_password", "password");
+
+        try {
+            Properties props = new Properties(defaults);
+            String filePath = InjectorModule.class.getClassLoader().getResource("db.properties").getPath();
+            props.load(new FileInputStream(filePath));
+            Names.bindProperties(binder(), props);
+        } catch (IOException e) {
+            new ConsoleLogger().print("Could not load config: " + e);
+            System.exit(1);
+        }
+
         bind(Loggable.class).to(ConsoleLogger.class);
         bind(ConnectionFactory.class).to(MySqlConnectionFactory.class);
         bind(Database.class).to(MySqlDatabase.class);

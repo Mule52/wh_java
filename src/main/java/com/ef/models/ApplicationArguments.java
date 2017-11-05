@@ -2,12 +2,9 @@ package com.ef.models;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import joptsimple.OptionSpec;
 
 import java.time.*;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import static joptsimple.util.DateConverter.datePattern;
 import static joptsimple.util.RegexMatcher.regex;
@@ -60,7 +57,6 @@ public class ApplicationArguments {
         threshold = (Integer) options.valueOf("threshold");
         accessLog = options.has("accessLog") ? options.valueOf("accessLog").toString() : null;
     }
-
 
     public String getAccessLog() {
         return accessLog;

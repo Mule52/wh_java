@@ -64,7 +64,7 @@ public class MySqlDatabaseTests {
             ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         String insertStatement = String.format("INSERT INTO %s.%s (%s, %s) VALUES (?, ?);",
-                Database.NAME,
+                "wallet_hub",
                 Database.Tables.BlockedIps.TABLE_NAME,
                 Database.Tables.BlockedIps.IP,
                 Database.Tables.BlockedIps.MESSAGE);

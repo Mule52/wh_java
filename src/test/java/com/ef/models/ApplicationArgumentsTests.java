@@ -48,30 +48,36 @@ public class ApplicationArgumentsTests {
     @Test(expected = Exception.class)
     public void invalidStartDatePatternShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01 13:00:00", "--duration=hourly", "--threshold=100"};
+        new ApplicationArguments(args);
     }
 
     @Test(expected = Exception.class)
     public void invalidDurationValueShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=monthly", "--threshold=100"};
+        new ApplicationArguments(args);
     }
 
     @Test(expected = Exception.class)
     public void invalidThresholdValueShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
+        new ApplicationArguments(args);
     }
 
     @Test(expected = Exception.class)
     public void invalidAccessLogArgumentShouldThrowException() {
         args = new String[]{"--accessLogd=/path/to/file.log", "--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
+        new ApplicationArguments(args);
     }
 
     @Test(expected = Exception.class)
     public void unexpectedArgumentShouldThrowException() {
         args = new String[]{"--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test"};
+        new ApplicationArguments(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void unexpectedArgumentShouldThrowIllegalArgumentException() {
         args = new String[]{"--accessLog=/path/to/file.log", "--startDate=2017-01-01.13:00:00", "--duration=hourly", "--threshold=test", "--unexpected=arg"};
+        new ApplicationArguments(args);
     }
 }

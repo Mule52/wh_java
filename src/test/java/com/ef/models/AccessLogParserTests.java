@@ -36,7 +36,7 @@ public class AccessLogParserTests {
 
         cut.processLogs(startDate, duration, threshold);
 
-        verify(logger, Mockito.times(1)).print("192.168.1.1 Blocked due to exceeding the daily threshold of 500 with 502 total requests");
+        verify(logger, Mockito.times(1)).print("192.168.1.1");
         verify(blockedIpRepository, Mockito.times(1)).save(Mockito.any(BlockedIpDto.class));
     }
 }

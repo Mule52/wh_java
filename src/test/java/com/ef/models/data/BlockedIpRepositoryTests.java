@@ -21,7 +21,7 @@ public class BlockedIpRepositoryTests {
         cut = new BlockedIpRepositoryImpl(database);
 
         insertStatement = String.format("INSERT INTO %s.%s (%s, %s) VALUES (?, ?);",
-                Database.NAME,
+                database.getDbName(),
                 Database.Tables.BlockedIps.TABLE_NAME,
                 Database.Tables.BlockedIps.IP,
                 Database.Tables.BlockedIps.MESSAGE);
