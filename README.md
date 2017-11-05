@@ -3,7 +3,6 @@
 # Building
 mvn clean compile package
 <br/>
-mvn exec:java -Dexec.mainClass=Main -Dexec.args="--startDate=2017-01-01.13:00:00 --duration=hourly --threshold=100"
 
 # Config
 resources/db.properties has database specific settings that need updates.
@@ -14,7 +13,13 @@ db_username=fake<br/>
 db_password=fake<br/>
 
 # Running from project root
-java -cp "./target/parser-jar-with-dependencies.jar" com.ef.Parser --accessLog=./target/classes/access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
+java -cp "./target/parser-jar-with-dependencies.jar" com.ef.Parser --accessLog=./target/classes/access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200 <br/>
+or <br/>
+mvn exec:java -Dexec.mainClass=Main -Dexec.args="--startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200" <br/>
+or <br/>
+mvn exec:java -Dexec.mainClass=Main -Dexec.args="--accessLog=./target/classes/access.log --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200" <br/>
+
+
 
 # Debugging from project
 Uncomment one of the args[] in ApplicationArguments and update db.properties.

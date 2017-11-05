@@ -1,6 +1,5 @@
 com/ef/models/data/ConnectionFactory.class
 com/ef/models/data/MySqlConnectionFactory.class
-com/ef/models/data/dtos/HttpLogDto.class
 com/ef/InjectorModule.class
 com/ef/models/data/dtos/BlockedIpDto.class
 com/ef/models/data/BlockedIpRepositoryImpl.class
