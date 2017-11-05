@@ -5,9 +5,9 @@ select
   ip,
   count(*) as requests
 from
-  web_logs
+  http_logs
 where
-  created_on between '2017-01-01 00:00:12' and '2017-01-02 01:00:12'
+  created_on between '2017-01-01 13:00:00' and '2017-01-01 14:00:00'
 group by
   ip
 having
@@ -20,7 +20,7 @@ order by
 select
   *
 From
-  web_logs
+  http_logs
 where
   ip = '192.168.85.243'
 ;
